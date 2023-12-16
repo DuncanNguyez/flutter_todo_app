@@ -14,7 +14,7 @@ class DisplayTaskDetail extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const Gap(40),
-        DisplayTaskIcon(task: task),
+        DisplayTaskIcon(category: task.category,),
         const Gap(16),
         Text(
           task.title,

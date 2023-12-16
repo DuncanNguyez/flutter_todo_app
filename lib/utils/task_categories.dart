@@ -12,6 +12,16 @@ enum TaskCategory {
   work(Icons.work, Colors.amber),
   ;
 
+  static TaskCategory fromString(String name) {
+    try {
+      return TaskCategory.values.firstWhere(
+        (category) => category.name == name,
+      );
+    } catch (e) {
+      return TaskCategory.other;
+    }
+  }
+
   final IconData icon;
   final Color color;
   const TaskCategory(this.icon, this.color);

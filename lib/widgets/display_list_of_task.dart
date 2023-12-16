@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todoapp/data/data.dart';
 import 'package:todoapp/utils/utils.dart';
 import 'package:todoapp/widgets/widgets.dart';
 
-class DisplayListOfTask extends StatelessWidget {
+class DisplayListOfTask extends ConsumerWidget {
   const DisplayListOfTask(
       {super.key, required this.tasks, required this.isCompleted});
   final List<Task> tasks;
   final bool isCompleted;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final String message = isCompleted
         ? "There is no completed task yet"
         : "There is no task todo";
@@ -40,7 +41,8 @@ class DisplayListOfTask extends StatelessWidget {
                           return DisplayTaskDetail(task: task);
                         });
                   },
-                  onLongPress: () {},
+                  onLongPress: () => AppAlerts.showAlertDeleteDialog(
+                      context: context, ref: ref, task: task),
                   child: DisplayTaskItem(task: task),
                 );
               },
